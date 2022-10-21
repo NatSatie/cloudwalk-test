@@ -46,9 +46,9 @@ def readKillLine(line: str, gameIndex: int):
 		isPlayerAddedToPlayerList(playerAlive, gameIndex)
 		isPlayerAddedToPlayerList(playerDead, gameIndex)
 		if (playerAlive != '<world>'):
-			quakeGameLogList[gameIndex].addKillByPlayer(playerAlive, meansOfDeath)
+			quakeGameLogList[gameIndex].addKillByPlayer(playerAlive, playerDead, meansOfDeath)
 		else:
-			quakeGameLogList[gameIndex].addKillByWorld(meansOfDeath)
+			quakeGameLogList[gameIndex].addKillByWorld(playerDead, meansOfDeath)
 
 def isPlayerAddedToPlayerList(playerName: str, gameIndex: int):
 	if playerName not in quakeGameLogList[gameIndex].playerList:
