@@ -1,0 +1,23 @@
+{
+  "game_0": {
+    "total_kills": 14,
+    "players": [
+      "Isgalamido",
+      "Zeh",
+      "Dono da Bola",
+      "Assasinu Credi"
+    ],
+    "kills": {
+      "Isgalamido": 2,
+      "Zeh": 2,
+      "Dono da Bola": 0,
+      "Assasinu Credi": 5
+    },
+    "deaths": {
+      "Isgalamido": 0,
+      "Zeh": 5,
+      "Dono da Bola": 1,
+      "Assasinu Credi": 8
+    }
+  }
+}
