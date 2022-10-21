@@ -1,0 +1,7 @@
+{
+  "game_0": {
+    "total_kills": 0,
+    "players": [],
+    "kills": {}
+  }
+}
