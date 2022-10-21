@@ -1,5 +1,5 @@
 import argparse
-from asyncore import write
+import asyncio
 from ReadFile import matchRegex
 import sys
 
@@ -20,8 +20,8 @@ def argumentParser():
 						required=True)
 	return parser.parse_args()
 
-def writeOutputFile(outputFile, gameResult):
-	outputFile = args.output
+def writeOutputFile(outputFile: str, gameResult):
+	outputFile = args.output + ".json"
 	originalStdout = sys.stdout
 	with open(outputFile, 'w') as f:
 		sys.stdout = f
@@ -30,7 +30,6 @@ def writeOutputFile(outputFile, gameResult):
 
 if __name__ == "__main__":
 	args = argumentParser()
-	print(args)
 	if args:
 		gameResult = matchRegex(args.logfile)
 		outputFile = args.output

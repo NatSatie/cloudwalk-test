@@ -24,7 +24,7 @@ quakeGameLogList = []
 
 quakeLogList = {}
 
-def matchRegex(logfile):
+def matchRegex(logfile: str):
 		with open(logfile, "r", encoding="utf-8") as fp:
 			gameIndex = -1
 			for line in fp.readlines():
@@ -38,7 +38,7 @@ def matchRegex(logfile):
 					quakeLogList[gameName] = quakeGameLogList[gameIndex].toString()
 		return json.dumps(quakeLogList, indent=2)
 
-def readKillLine(line, gameIndex):
+def readKillLine(line: str, gameIndex: int):
 		lineMatched = killRegex.match(line)
 		playerAlive = lineMatched.group(1).strip()
 		playerDead = lineMatched.group(2).strip()
@@ -50,6 +50,6 @@ def readKillLine(line, gameIndex):
 		else:
 			quakeGameLogList[gameIndex].addKillByWorld(meansOfDeath)
 
-def isPlayerAddedToPlayerList(playerName, gameIndex):
+def isPlayerAddedToPlayerList(playerName: str, gameIndex: int):
 	if playerName not in quakeGameLogList[gameIndex].playerList:
 		quakeGameLogList[gameIndex].addPlayer(playerName)
