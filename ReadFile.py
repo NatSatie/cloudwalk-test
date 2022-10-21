@@ -1,3 +1,4 @@
+from multiprocessing import current_process
 import re
 from QuakeLog import QuakeLog
 from MeansOfDeathEnum import MeansOfDeathEnum
@@ -19,37 +20,55 @@ shutdownRegex = re.compile(r".*ShutdownGame:")
 #   0:29 Item: 2 weapon_rocketlauncher
 itemRegex = re.compile(r".*Item:")
 
-# List of Quake games that have been read in log file.
-quakeGameLogList = []
+class ReadFile:
+	def __init__(self, logfile: str, reportList = {}, quakeGameLogList = [], gameIndex = -1, isReadingGame = False, currentGame = QuakeLog):
+		self.logfile = logfile
+		# List of Quake games that have been read in log file.
+		self.reportList = reportList
+		self.quakeGameLogList = quakeGameLogList
+		self.gameIndex = gameIndex
+		self.isReadingGame = isReadingGame
+		self.currentGame = currentGame
 
-quakeLogList = {}
-
-def matchRegex(logfile: str):
-		with open(logfile, "r", encoding="utf-8") as fp:
-			gameIndex = -1
+	def getGameResults(self):
+		with open(self.logfile, "r", encoding="utf-8") as fp:
 			for line in fp.readlines():
 				if startRegex.match(line):
-					gameIndex += 1
-					quakeGameLogList.append(QuakeLog(gameIndex))
+					self.readStartLine()
 				if killRegex.match(line):
-					readKillLine(line, gameIndex)
+					self.readKillLine(line)
 				if shutdownRegex.match(line):
-					gameName = "game_" + str(gameIndex)
-					quakeLogList[gameName] = quakeGameLogList[gameIndex].toString()
-		return json.dumps(quakeLogList, indent=2)
+					self.readShutdownLine()
+			else:
+				if (self.isReadingGame):
+					raise Exception("The game log doesn't have a Shutdown Game line. "
+													+ "Make sure you have complete file.")
+		return json.dumps(self.reportList, indent=2)
 
-def readKillLine(line: str, gameIndex: int):
+	def readShutdownLine(self):
+		gameName = "game_" + str(self.gameIndex)
+		self.reportList[gameName] = self.currentGame.toString()
+		self.isReadingGame = False
+		self.quakeGameLogList.append(self.currentGame)
+
+	def readStartLine(self):
+		# In case a game has ended but not properly shutted down
+		if (self.isReadingGame):
+			self.quakeGameLogList.append(self.currentGame)
+			gameName = "game_" + str(self.gameIndex)
+			self.reportList[gameName] = self.currentGame.toString()
+		self.gameIndex += 1
+		self.currentGame = QuakeLog(0, [], {}, {})
+		self.isReadingGame = True
+
+	def readKillLine(self, line: str):
 		lineMatched = killRegex.match(line)
 		playerAlive = lineMatched.group(1).strip()
 		playerDead = lineMatched.group(2).strip()
 		meansOfDeath = MeansOfDeathEnum[lineMatched.group(3).strip()]
-		isPlayerAddedToPlayerList(playerAlive, gameIndex)
-		isPlayerAddedToPlayerList(playerDead, gameIndex)
+		self.currentGame.isPlayerAddedToPlayerList(playerAlive)
+		self.currentGame.isPlayerAddedToPlayerList(playerDead)
 		if (playerAlive != '<world>'):
-			quakeGameLogList[gameIndex].addKillByPlayer(playerAlive, playerDead, meansOfDeath)
+			self.currentGame.addKillByPlayer(playerAlive, playerDead, meansOfDeath)
 		else:
-			quakeGameLogList[gameIndex].addKillByWorld(playerDead, meansOfDeath)
-
-def isPlayerAddedToPlayerList(playerName: str, gameIndex: int):
-	if playerName not in quakeGameLogList[gameIndex].playerList:
-		quakeGameLogList[gameIndex].addPlayer(playerName)
+			self.currentGame.addKillByWorld(playerDead, meansOfDeath)

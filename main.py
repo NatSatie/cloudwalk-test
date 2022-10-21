@@ -1,6 +1,6 @@
 import argparse
 import asyncio
-from ReadFile import matchRegex
+from ReadFile import ReadFile
 import sys
 
 def argumentParser():
@@ -31,6 +31,6 @@ def writeOutputFile(outputFile: str, gameResult):
 if __name__ == "__main__":
 	args = argumentParser()
 	if args:
-		gameResult = matchRegex(args.logfile)
-		outputFile = args.output
-		writeOutputFile(outputFile, gameResult)
+		readFile = ReadFile(logfile=args.logfile)
+		gameResult = readFile.getGameResults()
+		writeOutputFile(outputFile=args.output, gameResult=gameResult)
