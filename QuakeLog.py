@@ -7,7 +7,9 @@ class QuakeLog:
     self.playerList = playerList
     self.killsByPlayersList = killsByPlayersList
     self.deathOfPlayersList = deathOfPlayersList
-    self.killsByMeans = self.generateMeansOfDeathEnumList()
+    self.killsByMeans = {}
+    for meansOfDeath in MeansOfDeathEnum:
+      self.killsByMeans[str(meansOfDeath).split(".")[1]] = 0
 
   def addPlayer(self, playerName : str):
     if (playerName != '<world>'):
@@ -38,9 +40,3 @@ class QuakeLog:
   def isPlayerAddedToPlayerList(self, playerName: str):
     if playerName not in self.playerList:
       self.addPlayer(playerName)
-
-  def generateMeansOfDeathEnumList(self):
-    killsByMeans = {}
-    for meansOfDeath in MeansOfDeathEnum:
-      killsByMeans[str(meansOfDeath).split(".")[1]] = 0
-    return killsByMeans
