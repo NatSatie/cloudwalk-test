@@ -1,10 +1,9 @@
 from MeansOfDeathEnum import MeansOfDeathEnum
 
-
 class QuakeLog:
-  def __init__(self, totalKills: int = 0, playerList = [], killsByPlayersList = {}, deathOfPlayersList = {}):
+  def __init__(self, totalKills: int = 0, killsByPlayersList = {}, deathOfPlayersList = {}):
     self.totalKills = totalKills
-    self.playerList = playerList
+    self.playerList = []
     self.killsByPlayersList = killsByPlayersList
     self.deathOfPlayersList = deathOfPlayersList
     self.killsByMeans = {}
