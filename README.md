@@ -76,4 +76,4 @@ If we run `python -m coverage html`, we should expect to see in the `htmlcov\ind
 
 ### Fun Facts of development
 
-It was also added to the Github repo, a small Github actions yml file. 
+It was also added to the Github repo, a small Github actions yml file. Check the commit `38c88c1fb7ffe76bed8ec61ca3517852447bf9cf` (test to check github actions) and `401c261c870145f2d459202f97662a43c640a13a`(fix test). The first one breaks the build in Github Actions due to an incorrect test case, and the second one fixes the build.
