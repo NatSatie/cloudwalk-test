@@ -1,6 +1,6 @@
 from multiprocessing import current_process
 import re
-from QuakeLog import QuakeLog
+from QuakeLog import QuakeLog, generateKillByMeans
 from MeansOfDeathEnum import MeansOfDeathEnum
 import json
 
@@ -47,7 +47,7 @@ class ReadFile:
 
 	def readShutdownLine(self):
 		gameName = "game_" + str(self.gameIndex)
-		self.reportList[gameName] = self.currentGame.toString()
+		self.reportList[gameName] = self.currentGame.buildGameReport()
 		self.isReadingGame = False
 		self.quakeGameLogList.append(self.currentGame)
 
@@ -56,9 +56,9 @@ class ReadFile:
 		if (self.isReadingGame):
 			self.quakeGameLogList.append(self.currentGame)
 			gameName = "game_" + str(self.gameIndex)
-			self.reportList[gameName] = self.currentGame.toString()
+			self.reportList[gameName] = self.currentGame.buildGameReport()
 		self.gameIndex += 1
-		self.currentGame = QuakeLog(0, [], {}, {})
+		self.currentGame = QuakeLog(0, [], {}, {}, generateKillByMeans())
 		self.isReadingGame = True
 
 	def readKillLine(self, line: str):

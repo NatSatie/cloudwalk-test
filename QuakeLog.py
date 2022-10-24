@@ -1,14 +1,18 @@
 from MeansOfDeathEnum import MeansOfDeathEnum
 
+def generateKillByMeans():
+    killsByMeans = {}
+    for meansOfDeath in MeansOfDeathEnum:
+      killsByMeans[str(meansOfDeath).split(".")[1]] = 0
+    return killsByMeans
+
 class QuakeLog:
-  def __init__(self, totalKills: int = 0, killsByPlayersList = {}, deathOfPlayersList = {}):
+  def __init__(self, totalKills: int = 0, playerList = [], killsByPlayersList = {}, deathOfPlayersList = {}, killsByMeans = generateKillByMeans()):
     self.totalKills = totalKills
-    self.playerList = []
+    self.playerList = playerList
     self.killsByPlayersList = killsByPlayersList
     self.deathOfPlayersList = deathOfPlayersList
-    self.killsByMeans = {}
-    for meansOfDeath in MeansOfDeathEnum:
-      self.killsByMeans[str(meansOfDeath).split(".")[1]] = 0
+    self.killsByMeans = killsByMeans
 
   def addPlayer(self, playerName : str):
     if (playerName != '<world>'):
@@ -27,7 +31,7 @@ class QuakeLog:
     self.deathOfPlayersList[playerNameVictim] += 1
     self.killsByMeans[str(meansOfDeath).split(".")[1]] += 1
 
-  def toString(self):
+  def buildGameReport(self):
     gameResult = {}
     gameResult['total_kills'] = self.totalKills
     gameResult['players'] = self.playerList
