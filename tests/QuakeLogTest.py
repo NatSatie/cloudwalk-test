@@ -46,7 +46,7 @@ class TestQuakeLog(unittest.TestCase):
         killByMeans["MOD_TARGET_LASER"] = 2
         self.quakeLog = QuakeLog(2, playerList, killByPlayerList, deathOfPlayersList, killByMeans)
         self.assertEqual(self.quakeLog.buildGameReport(), {
-            "players": ["player_1", "player_2"],
+            "players": ["player_1", "player_3"], # Error done on purpose to test the Github actions
             "total_kills": 2,
             "kills": {
                 "player_1": 1,

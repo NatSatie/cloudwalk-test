@@ -1,0 +1,100 @@
+{
+  "game_0": {
+    "total_kills": 11,
+    "players": [
+      "Isgalamido",
+      "Mocinha"
+    ],
+    "kills": {
+      "Isgalamido": 3,
+      "Mocinha": 0
+    },
+    "deaths": {
+      "Isgalamido": 10,
+      "Mocinha": 1
+    },
+    "kills_by_means": {
+      "MOD_UNKNOWN": 0,
+      "MOD_SHOTGUN": 0,
+      "MOD_GAUNTLET": 0,
+      "MOD_MACHINEGUN": 0,
+      "MOD_GRENADE": 0,
+      "MOD_GRENADE_SPLASH": 0,
+      "MOD_ROCKET": 0,
+      "MOD_ROCKET_SPLASH": 3,
+      "MOD_PLASMA": 0,
+      "MOD_PLASMA_SPLASH": 0,
+      "MOD_RAILGUN": 0,
+      "MOD_LIGHTNING": 0,
+      "MOD_BFG": 0,
+      "MOD_BFG_SPLASH": 0,
+      "MOD_WATER": 0,
+      "MOD_SLIME": 0,
+      "MOD_LAVA": 0,
+      "MOD_CRUSH": 0,
+      "MOD_TELEFRAG": 0,
+      "MOD_FALLING": 1,
+      "MOD_SUICIDE": 0,
+      "MOD_TARGET_LASER": 0,
+      "MOD_TRIGGER_HURT": 7,
+      "MOD_NAIL": 0,
+      "MOD_CHAINGUN": 0,
+      "MOD_PROXIMITY_MINE": 0,
+      "MOD_KAMIKAZE": 0,
+      "MOD_JUICED": 0,
+      "MOD_GRAPPLE": 0
+    }
+  },
+  "game_1": {
+    "total_kills": 4,
+    "players": [
+      "Isgalamido",
+      "Mocinha",
+      "Zeh",
+      "Dono da Bola"
+    ],
+    "kills": {
+      "Isgalamido": 1,
+      "Mocinha": 0,
+      "Zeh": 0,
+      "Dono da Bola": 0
+    },
+    "deaths": {
+      "Isgalamido": 0,
+      "Mocinha": 1,
+      "Zeh": 2,
+      "Dono da Bola": 1
+    },
+    "kills_by_means": {
+      "MOD_UNKNOWN": 0,
+      "MOD_SHOTGUN": 0,
+      "MOD_GAUNTLET": 0,
+      "MOD_MACHINEGUN": 0,
+      "MOD_GRENADE": 0,
+      "MOD_GRENADE_SPLASH": 0,
+      "MOD_ROCKET": 1,
+      "MOD_ROCKET_SPLASH": 0,
+      "MOD_PLASMA": 0,
+      "MOD_PLASMA_SPLASH": 0,
+      "MOD_RAILGUN": 0,
+      "MOD_LIGHTNING": 0,
+      "MOD_BFG": 0,
+      "MOD_BFG_SPLASH": 0,
+      "MOD_WATER": 0,
+      "MOD_SLIME": 0,
+      "MOD_LAVA": 0,
+      "MOD_CRUSH": 0,
+      "MOD_TELEFRAG": 0,
+      "MOD_FALLING": 1,
+      "MOD_SUICIDE": 0,
+      "MOD_TARGET_LASER": 0,
+      "MOD_TRIGGER_HURT": 2,
+      "MOD_NAIL": 0,
+      "MOD_CHAINGUN": 0,
+      "MOD_PROXIMITY_MINE": 0,
+      "MOD_KAMIKAZE": 0,
+      "MOD_JUICED": 0,
+      "MOD_GRAPPLE": 0
+    }
+  }
+}
